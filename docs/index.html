@@ -1,293 +1,362 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NEXORA — ERP para Retail</title>
+<title>NEXORA — Retail ERP</title>
 <style>
-  :root{
-    --navy:#0B2545;
-    --emerald:#00A676;
-    --amber:#F2B705;
-    --paper:#F5F7FA;
-    --ink:#1a2433;
-    --ink-soft:#4a5568;
-    --line:#dfe4ea;
-  }
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  body{
-    font-family:"Segoe UI",-apple-system,system-ui,sans-serif;
-    color:var(--ink);
-    background:var(--paper);
-    line-height:1.65;
-  }
-  h1,h2,h3{font-family:"Segoe UI Semibold","Segoe UI",sans-serif;letter-spacing:-0.01em}
-
-  header.hero{
-    background:var(--navy);
-    color:#fff;
-    padding:72px 8vw 64px;
-    display:grid;
-    grid-template-columns:1.3fr 1fr;
-    gap:40px;
-    align-items:end;
-  }
-  header.hero .mark{
-    width:56px;height:56px;border-radius:14px;
-    background:linear-gradient(135deg,var(--emerald),#00c98d);
-    display:grid;place-items:center;font-weight:700;font-size:1.5rem;color:var(--navy);
-    margin-bottom:22px;
-  }
-  header.hero h1{font-size:clamp(2.2rem,4.5vw,3.4rem);font-weight:700;margin-bottom:14px}
-  header.hero p{font-size:1.15rem;color:#c7d3e8;max-width:46ch}
-  header.hero .side{border-left:2px solid rgba(255,255,255,.18);padding-left:28px}
-  header.hero .side p{color:#c7d3e8;font-size:.98rem;margin-bottom:6px}
-  header.hero .side strong{color:#fff}
-
-  nav.tabs{
-    display:flex;gap:2px;background:#fff;border-bottom:1px solid var(--line);
-    padding:0 8vw;overflow-x:auto;position:sticky;top:0;z-index:5;
-  }
-  nav.tabs a{
-    padding:16px 18px;color:var(--ink-soft);text-decoration:none;font-size:.92rem;
-    white-space:nowrap;border-bottom:3px solid transparent;
-  }
-  nav.tabs a:hover{color:var(--navy);border-bottom-color:var(--amber)}
-
-  main{max-width:980px;margin:0 auto;padding:64px 8vw}
-  section{margin-bottom:64px;scroll-margin-top:64px}
-  section h2{
-    font-size:1.6rem;color:var(--navy);margin-bottom:18px;
-    padding-bottom:10px;border-bottom:2px solid var(--line);
-  }
-  section h3{font-size:1.1rem;color:var(--navy);margin:22px 0 10px}
-  p{color:var(--ink-soft);margin-bottom:14px;max-width:74ch}
-  strong{color:var(--ink)}
-
-  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:18px}
-  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
-  @media(max-width:760px){.grid-2,.grid-3{grid-template-columns:1fr}header.hero{grid-template-columns:1fr}header.hero .side{border-left:none;border-top:2px solid rgba(255,255,255,.18);padding-left:0;padding-top:20px}}
-
-  .card{
-    background:#fff;border:1px solid var(--line);border-radius:10px;padding:22px;
-  }
-  .card h3{margin-top:0}
-  .card p{margin-bottom:0;font-size:.95rem}
-
-  table{width:100%;border-collapse:collapse;margin-top:14px;background:#fff}
-  th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:.94rem}
-  th{background:var(--navy);color:#fff;font-weight:600}
-  tr:last-child td{border-bottom:none}
-
-  .tree{font-size:.95rem;color:var(--ink-soft);margin-top:12px}
-  .tree ul{list-style:none;margin-left:22px;border-left:1px dashed var(--line);padding-left:18px;margin-top:6px}
-  .tree > ul{margin-left:0;border-left:none;padding-left:0}
-  .tree li{margin:6px 0}
-  .tree .lvl1{color:var(--navy);font-weight:600}
-  .tree .lvl2{color:var(--ink);font-weight:600}
-
-  .swatch-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:16px}
-  .swatch{width:150px}
-  .swatch .chip{height:64px;border-radius:8px;border:1px solid var(--line)}
-  .swatch .label{font-size:.82rem;margin-top:6px;color:var(--ink-soft)}
-  .swatch .hex{font-size:.82rem;color:var(--ink);font-weight:600}
-
-  .team{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:16px}
-  .team .person{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px;text-align:center}
-  .team .person .initials{
-    width:44px;height:44px;border-radius:50%;background:var(--emerald);color:#fff;
-    display:grid;place-items:center;margin:0 auto 10px;font-weight:600;
-  }
-
-  .status{display:inline-block;padding:3px 10px;border-radius:999px;font-size:.78rem;font-weight:600}
-  .status.done{background:#dcf5ec;color:#046a4d}
-  .status.pending{background:#fdecc8;color:#8a5a00}
-
-  footer{padding:32px 8vw;color:var(--ink-soft);font-size:.85rem;border-top:1px solid var(--line)}
+:root{
+--navy:#0B2545;
+--emerald:#00A676;
+--amber:#F2B705;
+--paper:#F5F7FA;
+--ink:#1a2433;
+--ink-soft:#4a5568;
+--line:#dfe4ea;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{
+font-family:"Segoe UI",-apple-system,system-ui,sans-serif;
+color:var(--ink);
+background:var(--paper);
+line-height:1.65;
+}
+h1,h2,h3{font-family:"Segoe UI Semibold","Segoe UI",sans-serif;letter-spacing:-0.01em}
+header.hero{
+background:var(--navy);
+color:#fff;
+padding:72px 8vw 64px;
+display:grid;
+grid-template-columns:1.3fr 1fr;
+gap:40px;
+align-items:end;
+}
+header.hero .mark{
+width:56px;height:56px;border-radius:14px;
+background:linear-gradient(135deg,var(--emerald),#00c98d);
+display:grid;place-items:center;font-weight:700;font-size:1.5rem;color:var(--navy);
+margin-bottom:22px;
+}
+header.hero h1{font-size:clamp(2.2rem,4.5vw,3.4rem);font-weight:700;margin-bottom:14px}
+header.hero p{font-size:1.15rem;color:#c7d3e8;max-width:46ch}
+header.hero .side{border-left:2px solid rgba(255,255,255,.18);padding-left:28px}
+header.hero .side p{color:#c7d3e8;font-size:.98rem;margin-bottom:6px}
+header.hero .side strong{color:#fff}
+nav.tabs{
+display:flex;gap:2px;background:#fff;border-bottom:1px solid var(--line);
+padding:0 8vw;overflow-x:auto;position:sticky;top:0;z-index:5;
+}
+nav.tabs a{
+padding:16px 18px;color:var(--ink-soft);text-decoration:none;font-size:.92rem;
+white-space:nowrap;border-bottom:3px solid transparent;
+}
+nav.tabs a:hover{color:var(--navy);border-bottom-color:var(--amber)}
+main{max-width:980px;margin:0 auto;padding:64px 8vw}
+section{margin-bottom:64px;scroll-margin-top:64px}
+section h2{
+font-size:1.6rem;color:var(--navy);margin-bottom:18px;
+padding-bottom:10px;border-bottom:2px solid var(--line);
+}
+section h3{font-size:1.1rem;color:var(--navy);margin:22px 0 10px}
+p{color:var(--ink-soft);margin-bottom:14px;max-width:74ch}
+strong{color:var(--ink)}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:18px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
+@media(max-width:760px){.grid-2,.grid-3{grid-template-columns:1fr}header.hero{grid-template-columns:1fr}header.hero .side{border-left:none;border-top:2px solid rgba(255,255,255,.18);padding-left:0;padding-top:20px}}
+.card{
+background:#fff;border:1px solid var(--line);border-radius:10px;padding:22px;
+}
+.card h3{margin-top:0}
+.card p{margin-bottom:0;font-size:.95rem}
+table{width:100%;border-collapse:collapse;margin-top:14px;background:#fff}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);font-size:.94rem}
+th{background:var(--navy);color:#fff;font-weight:600}
+tr:last-child td{border-bottom:none}
+.tree{font-size:.95rem;color:var(--ink-soft);margin-top:12px}
+.tree ul{list-style:none;margin-left:22px;border-left:1px dashed var(--line);padding-left:18px;margin-top:6px}
+.tree > ul{margin-left:0;border-left:none;padding-left:0}
+.tree li{margin:6px 0}
+.tree .lvl1{color:var(--navy);font-weight:600}
+.tree .lvl2{color:var(--ink);font-weight:600}
+.swatch-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:16px}
+.swatch{width:150px}
+.swatch .chip{height:64px;border-radius:8px;border:1px solid var(--line)}
+.swatch .label{font-size:.82rem;margin-top:6px;color:var(--ink-soft)}
+.swatch .hex{font-size:.82rem;color:var(--ink);font-weight:600}
+.team{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:16px}
+.team .person{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px;text-align:center}
+.team .person .initials{
+width:44px;height:44px;border-radius:50%;background:var(--emerald);color:#fff;
+display:grid;place-items:center;margin:0 auto 10px;font-weight:600;
+}
+.status{display:inline-block;padding:3px 10px;border-radius:999px;font-size:.78rem;font-weight:600}
+.status.done{background:#dcf5ec;color:#046a4d}
+.status.pending{background:#fdecc8;color:#8a5a00}
+footer{padding:32px 8vw;color:var(--ink-soft);font-size:.85rem;border-top:1px solid var(--line)}
 </style>
 </head>
 <body>
 
 <header class="hero">
-  <div>
-    <div class="mark">N</div>
-    <h1>NEXORA</h1>
-    <p>ERP web modular para el sector Retail: inventario, ventas y proveedores en un solo lugar, en tiempo real.</p>
-  </div>
-  <div class="side">
-    <p><strong>Curso:</strong> Ingeniería de Software II</p>
-    <p><strong>Facultad:</strong> Ingeniería — Universidad de Cundinamarca</p>
-    <p><strong>Docente:</strong> Carlos Eduardo Mujica Reyes</p>
-    <p><strong>Etapa actual:</strong> Sprint 0 — Definición del proyecto</p>
-  </div>
+<div>
+<div class="mark" style="background:none;display:flex;align-items:center;justify-content:center;">
+  <svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 34 L10 14 L38 34 L38 14" fill="none" stroke="#0B2545" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="10" cy="14" r="5" fill="#00A676"/>
+    <circle cx="38" cy="34" r="5" fill="#F2B705"/>
+  </svg>
+</div>
+<h1>NEXORA</h1>
+<p>A modular web ERP for the retail sector: inventory, sales and suppliers in one place, in real time.</p>
+</div>
+<div class="side">
+<p><strong>Course:</strong> Software Engineering II</p>
+<p><strong>Faculty:</strong> Engineering — Universidad de Cundinamarca</p>
+<p><strong>Instructor:</strong> Carlos Eduardo Mujica Reyes</p>
+<p><strong>Current stage:</strong> Sprint 0 — Project definition</p>
+</div>
 </header>
 
 <nav class="tabs">
-  <a href="#problema">Problema</a>
-  <a href="#solucion">Solución</a>
-  <a href="#usuario">Usuario final</a>
-  <a href="#modulos">Módulos</a>
-  <a href="#requisitos">Requisitos</a>
-  <a href="#tecnologias">Tecnologías</a>
-  <a href="#identidad">Identidad visual</a>
-  <a href="#roadmap">Roadmap</a>
-  <a href="#equipo">Equipo</a>
+<a href="#antecedentes">Background</a>
+<a href="#problema">Problem</a>
+<a href="#solucion">Solution</a>
+<a href="#usuario">End user</a>
+<a href="#modulos">Modules</a>
+<a href="#requisitos">Requirements</a>
+<a href="#tecnologias">Technologies</a>
+<a href="#identidad">Visual identity</a>
+<a href="#roadmap">Roadmap</a>
+<a href="#equipo">Team</a>
 </nav>
 
 <main>
 
-  <section id="problema">
-    <h2>El problema</h2>
-    <p>Las micro, pequeñas y medianas empresas de retail —tiendas de barrio, boutiques, minimercados y cadenas pequeñas— gestionan inventario, ventas y proveedores en sistemas desconectados: cuadernos, hojas de cálculo o aplicaciones aisladas de facturación.</p>
-    <p>Esto provoca desabastecimiento o sobrestock, pérdida de trazabilidad de productos, dificultad para conciliar ventas contra inventario físico, y ausencia de información consolidada para decidir precios o compras. Sin una solución, el negocio opera sobre estimaciones en lugar de datos.</p>
-  </section>
+<section id="antecedentes">
+<h2>Background — Comparison with similar solutions</h2>
+<p>Before defining NEXORA's scope, three existing market solutions that address similar retail needs were evaluated, in order to identify gaps and opportunities for differentiation.</p>
 
-  <section id="solucion">
-    <h2>La solución</h2>
-    <p><strong>NEXORA</strong> centraliza en un solo sistema la gestión de inventario, ventas (punto de venta) y proveedores/compras. El MVP de fin de semestre es una aplicación web en la nube (Azure) con autenticación por roles, alertas de stock mínimo, un punto de venta simple y un panel de reportes básico — toda la información del negocio en un solo lugar y en tiempo real.</p>
-    <h3>Justificación</h3>
-    <p>El proyecto reduce el tiempo administrativo del comerciante, disminuye pérdidas por descuadres de inventario, mejora la experiencia de compra al evitar quiebres de stock, y sienta las bases de un producto replicable para el retail independiente en Colombia.</p>
-  </section>
+<table>
+  <tr>
+    <th>Solution</th>
+    <th>Focus</th>
+    <th>Advantages</th>
+    <th>Disadvantages</th>
+  </tr>
+  <tr>
+    <td><strong>Odoo</strong></td>
+    <td>Open-source, modular ERP with over 80 official modules (inventory, sales, CRM, e-commerce, accounting).</td>
+    <td>Highly flexible and customizable; modular pricing (you only pay for what you use); large community; cloud or on-premise deployment.</td>
+    <td>Steep learning curve to configure properly; can be overkill for very small businesses; often requires technical knowledge or an integrator to get full value.</td>
+  </tr>
+  <tr>
+    <td><strong>SAP Business One</strong></td>
+    <td>Closed-source ERP built specifically for small and medium businesses, with strong financial and accounting capabilities.</td>
+    <td>Strong financial robustness and powerful reporting; compliance certifications in multiple countries; solid support for regulated industries.</td>
+    <td>Higher licensing cost; less customization flexibility compared to open-source options; slower implementation, usually dependent on certified partners.</td>
+  </tr>
+  <tr>
+    <td><strong>Loyverse POS</strong></td>
+    <td>Point-of-sale application focused on small businesses (shops, cafés, mini-markets).</td>
+    <td>Free basic version; very easy to use; ideal for single-location businesses with simple sales and inventory needs.</td>
+    <td>Not a full ERP: doesn't cover suppliers/purchasing robustly nor advanced financial reporting; limited for businesses growing into multiple locations.</td>
+  </tr>
+</table>
 
-  <section id="usuario">
-    <h2>Usuario final</h2>
-    <div class="grid-3">
-      <div class="card">
-        <h3>Administrador / dueño</h3>
-        <p>Gestiona usuarios, revisa reportes de ventas e inventario, define precios y proveedores. Necesita una interfaz simple y reportes visuales.</p>
-      </div>
-      <div class="card">
-        <h3>Vendedor / cajero</h3>
-        <p>Usa el punto de venta para registrar transacciones diarias. Necesita rapidez y una curva de aprendizaje mínima.</p>
-      </div>
-      <div class="card">
-        <h3>Encargado de inventario</h3>
-        <p>Registra entradas y salidas de producto, gestiona proveedores y genera órdenes de compra cuando el stock baja del mínimo.</p>
-      </div>
-    </div>
-    <h3>Utilidad y retorno de inversión</h3>
-    <p>Se mide con indicadores operativos: tiempo de cierre de caja diario, discrepancias entre stock físico y registrado, y reducción de quiebres de stock gracias a alertas automáticas.</p>
-  </section>
+<h3>Opportunity for NEXORA</h3>
+<p>None of the three covers exactly the middle ground a Colombian retail SME needs: something more complete than a simple POS like Loyverse, but without the cost and complexity of Odoo or SAP Business One. NEXORA fits right there, integrating inventory, sales and suppliers into a single simple system, built on the Microsoft ecosystem required for this project.</p>
+</section>
 
-  <section id="modulos">
-    <h2>Módulos y árbol de descomposición funcional</h2>
-    <div class="tree">
-      <ul>
-        <li class="lvl1">Sistema NEXORA
-          <ul>
-            <li class="lvl2">Módulo de Inventario
-              <ul>
-                <li>Gestión de productos
-                  <ul><li>Crear, editar y dar de baja productos</li><li>Asignar categoría, precio y proveedor</li></ul>
-                </li>
-                <li>Control de stock
-                  <ul><li>Registrar entradas y salidas</li><li>Alertas de stock mínimo</li></ul>
-                </li>
-              </ul>
-            </li>
-            <li class="lvl2">Módulo de Ventas (POS)
-              <ul>
-                <li>Registro de venta
-                  <ul><li>Buscar producto por código/nombre</li><li>Aplicar descuentos y calcular totales</li></ul>
-                </li>
-                <li>Cierre de caja
-                  <ul><li>Consolidar ventas del día</li><li>Generar reporte de cierre</li></ul>
-                </li>
-              </ul>
-            </li>
-            <li class="lvl2">Módulo de Proveedores / Compras
-              <ul>
-                <li>Gestión de proveedores
-                  <ul><li>Registrar y editar datos de proveedor</li></ul>
-                </li>
-                <li>Órdenes de compra
-                  <ul><li>Generar orden automática al llegar a stock mínimo</li></ul>
-                </li>
-              </ul>
-            </li>
-            <li class="lvl2">Módulo de Reportes
-              <ul>
-                <li>Reportes de ventas e inventario
-                  <ul><li>Exportar reporte a Excel</li></ul>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </section>
+<section id="problema">
+<h2>The problem</h2>
+<p>Micro, small and medium retail businesses —corner stores, boutiques, mini-markets and small chains— manage inventory, sales and suppliers through disconnected systems: notebooks, spreadsheets or isolated invoicing apps.</p>
+<p>This causes stockouts or overstock, loss of product traceability, difficulty reconciling sales against physical inventory, and a lack of consolidated information to decide on pricing or purchasing. Without a solution, the business operates on estimates instead of data.</p>
+</section>
 
-  <section id="requisitos">
-    <h2>Requisitos no funcionales</h2>
-    <table>
-      <tr><th>Atributo</th><th>Requisito</th></tr>
-      <tr><td>Rendimiento</td><td>Respuesta &lt; 2 segundos al registrar una venta.</td></tr>
-      <tr><td>Seguridad</td><td>Autenticación y autorización por roles (Administrador, Vendedor, Inventario).</td></tr>
-      <tr><td>Escalabilidad</td><td>Soporta crecimiento de catálogo e histórico sin rediseño de base de datos.</td></tr>
-      <tr><td>Usabilidad</td><td>Interfaz simple en español, curva de aprendizaje baja para ventas.</td></tr>
-      <tr><td>Portabilidad</td><td>Aplicación web accesible desde navegador en escritorio y tablet.</td></tr>
-      <tr><td>Mantenibilidad</td><td>Código modular en capas, documentado y con pruebas.</td></tr>
-    </table>
-    <h3>Alcance del MVP</h3>
-    <p><strong>Incluye:</strong> Inventario, Ventas (POS) y Proveedores/Compras, con autenticación por roles y reportes básicos.<br>
-    <strong>No incluye (fases futuras):</strong> CRM avanzado, Recursos Humanos, facturación electrónica DIAN e integración con marketplaces.</p>
-  </section>
+<section id="solucion">
+<h2>The solution</h2>
+<p><strong>NEXORA</strong> centralizes inventory, sales (point of sale) and supplier/purchasing management into a single system. The end-of-semester MVP is a cloud web application (Azure) with role-based authentication, minimum-stock alerts, a simple point of sale, and a basic reporting dashboard — all the business information in one place, in real time.</p>
+<h3>Justification</h3>
+<p>The project reduces the merchant's administrative workload, decreases losses from inventory mismatches, improves the shopping experience by avoiding stockouts, and lays the groundwork for a replicable product for independent retail in Colombia.</p>
+</section>
 
-  <section id="tecnologias">
-    <h2>Tecnologías — solo Microsoft</h2>
-    <table>
-      <tr><th>Categoría</th><th>Tecnología</th></tr>
-      <tr><td>Backend</td><td>C# + ASP.NET Core (Web API)</td></tr>
-      <tr><td>Frontend</td><td>Blazor (.NET)</td></tr>
-      <tr><td>Base de datos</td><td>Azure SQL Database</td></tr>
-      <tr><td>IDE</td><td>Visual Studio 2022 / VS Code</td></tr>
-      <tr><td>Control de versiones</td><td>Git + GitHub</td></tr>
-      <tr><td>Gestión ágil</td><td>GitHub Projects / Azure Boards</td></tr>
-      <tr><td>Despliegue</td><td>Azure App Service</td></tr>
-      <tr><td>Modelado</td><td>Microsoft Visio</td></tr>
-      <tr><td>Documentación</td><td>GitHub Pages, Microsoft Teams, Loop/SharePoint</td></tr>
-      <tr><td>Reportería (fase futura)</td><td>Power BI</td></tr>
-    </table>
-  </section>
+<section id="usuario">
+<h2>End user</h2>
+<div class="grid-3">
+<div class="card">
+<h3>Administrator / owner</h3>
+<p>Manages users, reviews sales and inventory reports, sets prices and suppliers. Needs a simple interface and visual reports.</p>
+</div>
+<div class="card">
+<h3>Salesperson / cashier</h3>
+<p>Uses the point of sale to record daily transactions. Needs speed and a minimal learning curve.</p>
+</div>
+<div class="card">
+<h3>Inventory manager</h3>
+<p>Records stock in and out, manages suppliers and generates purchase orders when stock drops below the minimum.</p>
+</div>
+</div>
+<h3>Value and return on investment</h3>
+<p>Measured through operational indicators: daily cash-close time, discrepancies between physical and recorded stock, and the reduction of stockouts thanks to automatic alerts.</p>
+</section>
 
-  <section id="identidad">
-    <h2>Identidad visual</h2>
-    <p>El nombre nace de "Nexus" (conexión) + una terminación que evoca "ahora": conectar en tiempo real todo lo que ocurre en un negocio retail. El logo es una "N" formada por dos nodos unidos en un bucle infinito.</p>
-    <div class="swatch-row">
-      <div class="swatch"><div class="chip" style="background:#0B2545"></div><div class="label">Primario</div><div class="hex">#0B2545</div></div>
-      <div class="swatch"><div class="chip" style="background:#00A676"></div><div class="label">Secundario</div><div class="hex">#00A676</div></div>
-      <div class="swatch"><div class="chip" style="background:#F2B705"></div><div class="label">Acento</div><div class="hex">#F2B705</div></div>
-      <div class="swatch"><div class="chip" style="background:#F5F7FA;border:1px solid #dfe4ea"></div><div class="label">Neutro</div><div class="hex">#F5F7FA</div></div>
-    </div>
-  </section>
+<section id="modulos">
+<h2>Modules and functional decomposition tree</h2>
+<div class="tree">
+<ul>
+<li class="lvl1">NEXORA System
+<ul>
+<li class="lvl2">Inventory Module
+<ul>
+<li>Product management
+<ul><li>Create, edit and deactivate products</li><li>Assign category, price and supplier</li></ul>
+</li>
+<li>Stock control
+<ul><li>Record stock in and out</li><li>Minimum-stock alerts</li></ul>
+</li>
+</ul>
+</li>
+<li class="lvl2">Sales Module (POS)
+<ul>
+<li>Sale registration
+<ul><li>Search product by code/name</li><li>Apply discounts and calculate totals</li></ul>
+</li>
+<li>Cash close
+<ul><li>Consolidate the day's sales</li><li>Generate closing report</li></ul>
+</li>
+</ul>
+</li>
+<li class="lvl2">Suppliers / Purchasing Module
+<ul>
+<li>Supplier management
+<ul><li>Register and edit supplier data</li></ul>
+</li>
+<li>Purchase orders
+<ul><li>Automatically generate an order when stock hits the minimum</li></ul>
+</li>
+</ul>
+</li>
+<li class="lvl2">Reports Module
+<ul>
+<li>Sales and inventory reports
+<ul><li>Export report to Excel</li></ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
 
-  <section id="roadmap">
-    <h2>Roadmap de sprints</h2>
-    <table>
-      <tr><th>Sprint</th><th>Entregable</th><th>Estado</th></tr>
-      <tr><td>Sprint 0</td><td>Definición del proyecto, requisitos e identidad visual</td><td><span class="status done">Completo</span></td></tr>
-      <tr><td>Sprint 1</td><td>Modelado UML (clases, casos de uso, secuencia)</td><td><span class="status pending">Pendiente</span></td></tr>
-      <tr><td>Sprint 2</td><td>Arquitectura técnica y estructura del proyecto</td><td><span class="status pending">Pendiente</span></td></tr>
-      <tr><td>Sprint 3</td><td>Núcleo: autenticación, usuarios, roles</td><td><span class="status pending">Pendiente</span></td></tr>
-      <tr><td>Sprint 4+</td><td>Inventario, Ventas (POS), Proveedores</td><td><span class="status pending">Pendiente</span></td></tr>
-    </table>
-  </section>
+<section id="requisitos">
+<h2>Non-functional requirements</h2>
+<table>
+<tr><th>Attribute</th><th>Requirement</th><th>Justification</th></tr>
+<tr>
+  <td>Performance</td>
+  <td>Response time &lt; 2 seconds when recording a sale.</td>
+  <td>At a point of sale, every extra second of waiting creates lines and friction with the customer; 2 seconds is the threshold commonly perceived as "instant" in commercial POS systems.</td>
+</tr>
+<tr>
+  <td>Security</td>
+  <td>Role-based authentication and authorization (Administrator, Salesperson, Inventory).</td>
+  <td>Prevents a cashier from changing prices or viewing financial reports meant only for the owner, protecting the integrity of the business's information.</td>
+</tr>
+<tr>
+  <td>Scalability</td>
+  <td>Supports catalog and history growth without redesigning the database.</td>
+  <td>A growing retail business adds products and accumulates years of sales history; redesigning the database later would be costly and would interrupt operations.</td>
+</tr>
+<tr>
+  <td>Usability</td>
+  <td>Simple interface in Spanish, low learning curve for sales staff.</td>
+  <td>Sales staff often rotate frequently and have no technical background; a hard-to-learn system slows down daily store operations.</td>
+</tr>
+<tr>
+  <td>Portability</td>
+  <td>Web application accessible from a browser on desktop and tablet.</td>
+  <td>Small stores don't always invest in dedicated hardware; working on any browser-capable device lowers the adoption barrier.</td>
+</tr>
+<tr>
+  <td>Maintainability</td>
+  <td>Modular, layered code, documented and tested.</td>
+  <td>The project will keep growing across future sprints with new members or maintainers; the code must be understandable and extensible without rewriting it.</td>
+</tr>
+</table>
 
-  <section id="equipo">
-    <h2>Equipo</h2>
-    <div class="team">
-      <div class="person"><div class="initials">CG</div><strong>Cristian Galeano</strong></div>
-      <div class="person"><div class="initials">RG</div><strong>Ronald Guayambuco</strong></div>
-      <div class="person"><div class="initials">JL</div><strong>Jesús Lozano</strong></div>
-      <div class="person"><div class="initials">JG</div><strong>Juan José Gracia</strong></div>
-    </div>
-  </section>
+<h3>Triple constraint</h3>
+<div class="grid-3">
+  <div class="card">
+    <h3>⏱️ Time</h3>
+    <p>The project runs over the academic semester (≈16 weeks), organized into sprints. Final MVP delivery is planned for the last week of the semester; Sprint 0 is already complete.</p>
+  </div>
+  <div class="card">
+    <h3>Cost</h3>
+    <p>No licensing cost: free/educational tools are used (GitHub Student Pack, Azure for Students, Visual Studio Community). The real cost is the team's effort: 4 members × ~8-10 hours/week × 16 weeks ≈ 550-640 person-hours.</p>
+  </div>
+  <div class="card">
+    <h3>Scope</h3>
+    <p><strong>Includes:</strong> Inventory, Sales (POS) and Suppliers/Purchasing, with role-based authentication and basic reporting.<br>
+    <strong>Excludes (future phases):</strong> advanced CRM, Human Resources, DIAN electronic invoicing, and marketplace integrations.</p>
+  </div>
+</div>
+</section>
+
+<section id="tecnologias">
+<h2>Technologies — Microsoft only</h2>
+<table>
+<tr><th>Category</th><th>Technology</th></tr>
+<tr><td>Backend</td><td>C# + ASP.NET Core (Web API)</td></tr>
+<tr><td>Frontend</td><td>Blazor (.NET)</td></tr>
+<tr><td>Database</td><td>Azure SQL Database</td></tr>
+<tr><td>IDE</td><td>Visual Studio 2022 / VS Code</td></tr>
+<tr><td>Version control</td><td>Git + GitHub</td></tr>
+<tr><td>Agile management</td><td>GitHub Projects / Azure Boards</td></tr>
+<tr><td>Deployment</td><td>Azure App Service</td></tr>
+<tr><td>Modeling</td><td>Microsoft Visio</td></tr>
+<tr><td>Documentation</td><td>GitHub Pages, Microsoft Teams, Loop/SharePoint</td></tr>
+<tr><td>Reporting (future phase)</td><td>Power BI</td></tr>
+</table>
+</section>
+
+<section id="identidad">
+<h2>Visual identity</h2>
+<p>The name comes from "Nexus" (connection) plus an ending that evokes "now": connecting everything happening in a retail business in real time. The logo is an "N" formed by two nodes joined in an infinite loop.</p>
+<div class="swatch-row">
+<div class="swatch"><div class="chip" style="background:#0B2545"></div><div class="label">Primary</div><div class="hex">#0B2545</div></div>
+<div class="swatch"><div class="chip" style="background:#00A676"></div><div class="label">Secondary</div><div class="hex">#00A676</div></div>
+<div class="swatch"><div class="chip" style="background:#F2B705"></div><div class="label">Accent</div><div class="hex">#F2B705</div></div>
+<div class="swatch"><div class="chip" style="background:#F5F7FA;border:1px solid #dfe4ea"></div><div class="label">Neutral</div><div class="hex">#F5F7FA</div></div>
+</div>
+</section>
+
+<section id="roadmap">
+<h2>Sprint roadmap</h2>
+<table>
+<tr><th>Sprint</th><th>Deliverable</th><th>Status</th></tr>
+<tr><td>Sprint 0</td><td>Project definition, requirements and visual identity</td><td><span class="status done">Complete</span></td></tr>
+<tr><td>Sprint 1</td><td>UML modeling (classes, use cases, sequence)</td><td><span class="status pending">Pending</span></td></tr>
+<tr><td>Sprint 2</td><td>Technical architecture and project structure</td><td><span class="status pending">Pending</span></td></tr>
+<tr><td>Sprint 3</td><td>Core: authentication, users, roles</td><td><span class="status pending">Pending</span></td></tr>
+<tr><td>Sprint 4+</td><td>Inventory, Sales (POS), Suppliers</td><td><span class="status pending">Pending</span></td></tr>
+</table>
+</section>
+
+<section id="equipo">
+<h2>Team</h2>
+<div class="team">
+<div class="person"><div class="initials">CG</div><strong>Cristian Galeano</strong></div>
+<div class="person"><div class="initials">RG</div><strong>Ronald Guayambuco</strong></div>
+<div class="person"><div class="initials">JL</div><strong>Jesús Lozano</strong></div>
+<div class="person"><div class="initials">JG</div><strong>Juan José Gracia</strong></div>
+</div>
+</section>
 
 </main>
 
 <footer>
-  NEXORA · Proyecto académico — Ingeniería de Software II · Facultad de Ingeniería, Universidad de Cundinamarca · 2026
+NEXORA · Academic project — Software Engineering II · Faculty of Engineering, Universidad de Cundinamarca · 2026
 </footer>
 
 </body>
